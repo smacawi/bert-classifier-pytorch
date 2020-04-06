@@ -22,17 +22,16 @@ else:
     device = torch.device("cpu")
 
 DATA_PATH = "CrisisNLP_labeled_data_crowdflower"
-PATHS_TRAIN = ["2014_California_Earthquake", "2014_Chile_Earthquake_en",
+PATHS = ["2014_California_Earthquake", "2014_Chile_Earthquake_en", "2013_Pakistan_eq",
                "2014_Hurricane_Odile_Mexico_en","2014_India_floods", "2014_Pakistan_floods",
                "2014_Philippines_Typhoon_Hagupit_en","2015_Cyclone_Pam_en","2015_Nepal_Earthquake_en"]
-PATHS_VAL = ["2013_Pakistan_eq"]
 
 print("Processing training data.")
-data_train = read_data(DATA_PATH, PATHS_TRAIN)
+data_train = read_data(DATA_PATH, PATHS, "train")
 data_train = data_train
 
 print("Processing validation data.")
-data_val = read_data(DATA_PATH, PATHS_VAL)
+data_val = read_data(DATA_PATH, PATHS, "test")
 
 max_len = max(
     len(max([tpl[0] for tpl in data_val], key = len)),
