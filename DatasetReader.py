@@ -8,13 +8,13 @@ import os
 import pandas as pd
 import torch
 
-def read_data(data_path, paths):
+def read_data(data_path, paths, train_test):
     data = []
     counter = 0
     for path in paths:
         DIR = f"{data_path}/{path}"
         for filename in os.listdir(DIR):
-            if filename.endswith(".csv") and all(x not in filename for x in ["train", "test"]):
+            if filename.endswith(".csv") and train_test in filename:
                 print(os.path.join(DIR, filename))
                 with open(os.path.join(DIR, filename), 'r', encoding='utf8') as file:
                     df = pd.read_csv(file)
